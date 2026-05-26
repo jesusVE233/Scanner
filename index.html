@@ -2,716 +2,126 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-
-    <meta 
-        name="viewport" 
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
-
-    <meta name="theme-color" content="#0b0b0f">
-    <title>Escáner QR - Inventario TI</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#08080c">
+    <title>Inventario TI QR</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
-
     <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            background: #0b0b0f;
-            color: #f5f5f7;
-            min-height: 100%;
-            touch-action: manipulation;
-            overscroll-behavior: none;
-        }
-
-        button, input, select, textarea {
-            font: inherit;
-        }
-
-        .app {
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at top left, rgba(0,113,227,0.28), transparent 34%),
-                radial-gradient(circle at top right, rgba(120,80,255,0.22), transparent 32%),
-                linear-gradient(180deg, #111116 0%, #0b0b0f 55%, #050507 100%);
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            padding: 14px 16px;
-            background: rgba(11,11,15,0.78);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .topbar-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 0;
-        }
-
-        .brand-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #0071e3, #6e5cff);
-            display: grid;
-            place-items: center;
-            color: white;
-            font-weight: 900;
-            box-shadow: 0 10px 24px rgba(0,113,227,0.28);
-        }
-
-        .brand-text {
-            min-width: 0;
-        }
-
-        .brand-text h1 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-            white-space: nowrap;
-        }
-
-        .brand-text span {
-            display: block;
-            color: #a1a1a6;
-            font-size: 12px;
-            margin-top: 2px;
-            white-space: nowrap;
-        }
-
-        .counter-pill {
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.10);
-            font-size: 12px;
-            color: #a1a1a6;
-            white-space: nowrap;
-        }
-
-        .counter-pill strong {
-            color: #ffffff;
-        }
-
-        .main {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 18px 14px 28px;
-        }
-
-        .hero {
-            padding: 22px 4px 16px;
-        }
-
-        .hero h2 {
-            margin: 0;
-            font-size: 34px;
-            line-height: 0.98;
-            font-weight: 900;
-            letter-spacing: -1.2px;
-        }
-
-        .hero p {
-            margin: 12px 0 0;
-            color: #a1a1a6;
-            font-size: 14px;
-            line-height: 1.38;
-        }
-
-        .glass-card {
-            background: rgba(255,255,255,0.085);
-            border: 1px solid rgba(255,255,255,0.11);
-            border-radius: 28px;
-            padding: 16px;
-            box-shadow: 0 24px 70px rgba(0,0,0,0.28);
-            backdrop-filter: blur(20px);
-            margin-bottom: 14px;
-        }
-
-        .section-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .section-head h3 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: -0.2px;
-        }
-
-        .section-head span {
-            color: #a1a1a6;
-            font-size: 12px;
-        }
-
-        #reader {
-            width: 100%;
-            min-height: 320px;
-            border-radius: 24px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        #reader video {
-            border-radius: 24px;
-        }
-
-        .scanner-placeholder {
-            min-height: 320px;
-            border-radius: 24px;
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.035)),
-                radial-gradient(circle at center, rgba(0,113,227,0.18), transparent 60%);
-            border: 1px dashed rgba(255,255,255,0.16);
-            display: grid;
-            place-items: center;
-            text-align: center;
-            color: #a1a1a6;
-            padding: 30px;
-        }
-
-        .scanner-placeholder .big-icon {
-            width: 68px;
-            height: 68px;
-            border-radius: 23px;
-            display: grid;
-            place-items: center;
-            background: rgba(255,255,255,0.08);
-            margin: 0 auto 14px;
-            font-size: 30px;
-        }
-
-        .scanner-placeholder strong {
-            display: block;
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 6px;
-        }
-
-        .btn-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .btn-row.three {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .btn {
-            border: none;
-            border-radius: 18px;
-            min-height: 50px;
-            padding: 12px 14px;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: transform 0.12s ease, opacity 0.12s ease, background 0.12s ease;
-        }
-
-        .btn:active {
-            transform: scale(0.975);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0071e3, #4f8cff);
-            color: white;
-            box-shadow: 0 12px 28px rgba(0,113,227,0.25);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.10);
-            color: #ffffff;
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .btn-green {
-            background: rgba(52,199,89,0.16);
-            color: #7dff9d;
-            border: 1px solid rgba(52,199,89,0.22);
-        }
-
-        .btn-red {
-            background: rgba(255,69,58,0.14);
-            color: #ff8b84;
-            border: 1px solid rgba(255,69,58,0.22);
-        }
-
-        .btn-mail {
-            background: rgba(255,204,0,0.15);
-            color: #ffe27a;
-            border: 1px solid rgba(255,204,0,0.22);
-        }
-
-        .list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 560px;
-            overflow: auto;
-            padding-right: 2px;
-        }
-
-        .scan-item {
-            border-radius: 22px;
-            padding: 14px;
-            background: rgba(255,255,255,0.075);
-            border: 1px solid rgba(255,255,255,0.105);
-        }
-
-        .scan-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .scan-name {
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: -0.3px;
-            word-break: break-word;
-        }
-
-        .scan-time {
-            color: #a1a1a6;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        .scan-meta {
-            display: grid;
-            gap: 4px;
-            font-size: 13px;
-            color: #ffffff;
-        }
-
-        .scan-meta span {
-            color: #a1a1a6;
-            font-weight: 800;
-        }
-
-        .scan-note {
-            margin-top: 9px;
-            padding: 10px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.075);
-            color: #ffffff;
-            font-size: 13px;
-            line-height: 1.35;
-        }
-
-        .mini-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-top: 10px;
-        }
-
-        .mini-btn {
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.075);
-            color: #ffffff;
-            border-radius: 999px;
-            padding: 7px 11px;
-            font-size: 12px;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .empty {
-            border-radius: 22px;
-            padding: 24px;
-            text-align: center;
-            color: #a1a1a6;
-            border: 1px dashed rgba(255,255,255,0.16);
-            background: rgba(255,255,255,0.05);
-            font-size: 13px;
-        }
-
-        .modal-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 50;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(16px);
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 12px;
-        }
-
-        .modal-bg.visible {
-            display: flex;
-        }
-
-        .modal {
-            width: 100%;
-            max-width: 560px;
-            max-height: calc(100vh - 24px);
-            overflow: auto;
-            border-radius: 32px;
-            padding: 18px;
-            background: rgba(28,28,32,0.96);
-            border: 1px solid rgba(255,255,255,0.13);
-            box-shadow: 0 30px 90px rgba(0,0,0,0.5);
-            animation: modalIn 0.16s ease;
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal h3 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -0.7px;
-        }
-
-        .modal p {
-            margin: 7px 0 14px;
-            color: #a1a1a6;
-            font-size: 13px;
-            line-height: 1.35;
-        }
-
-        .detected {
-            background: rgba(255,255,255,0.075);
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 22px;
-            padding: 13px;
-            display: grid;
-            gap: 7px;
-            margin-bottom: 14px;
-        }
-
-        .detected div {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            font-size: 13px;
-        }
-
-        .detected span {
-            color: #a1a1a6;
-            font-weight: 800;
-        }
-
-        .detected strong {
-            color: #ffffff;
-            text-align: right;
-            word-break: break-word;
-        }
-
-        .warning {
-            display: none;
-            margin-bottom: 12px;
-            padding: 11px;
-            border-radius: 18px;
-            background: rgba(255,204,0,0.13);
-            border: 1px solid rgba(255,204,0,0.20);
-            color: #ffe27a;
-            font-size: 13px;
-            font-weight: 800;
-        }
-
-        .warning.visible {
-            display: block;
-        }
-
-        .field {
-            margin-bottom: 11px;
-        }
-
-        .field label {
-            display: block;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 850;
-            margin-bottom: 6px;
-        }
-
-        .input {
-            width: 100%;
-            border: 1px solid rgba(255,255,255,0.14);
-            background: rgba(255,255,255,0.08);
-            color: #ffffff;
-            border-radius: 18px;
-            padding: 13px 13px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .input:focus {
-            border-color: #0071e3;
-            box-shadow: 0 0 0 3px rgba(0,113,227,0.22);
-            background: rgba(255,255,255,0.11);
-        }
-
-        .input::placeholder {
-            color: #77777d;
-        }
-
-        select.input option {
-            color: #000;
-        }
-
-        textarea.input {
-            resize: vertical;
-            min-height: 85px;
-        }
-
-        .modal-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 14px;
-        }
-
-        .toast {
-            position: fixed;
-            left: 50%;
-            bottom: 22px;
-            z-index: 90;
-            transform: translateX(-50%) translateY(16px);
-            background: rgba(255,255,255,0.92);
-            color: #111116;
-            padding: 12px 15px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 850;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.18s ease;
-            max-width: calc(100vw - 28px);
-            text-align: center;
-        }
-
-        .toast.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .note {
-            color: #a1a1a6;
-            font-size: 12px;
-            text-align: center;
-            line-height: 1.35;
-            margin-top: 12px;
-        }
-
-        @media (min-width: 720px) {
-            .modal-bg {
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 560px) {
-            .hero h2 {
-                font-size: 30px;
-            }
-
-            .btn-row,
-            .btn-row.three,
-            .modal-actions {
-                grid-template-columns: 1fr;
-            }
-
-            .brand-text span {
-                display: none;
-            }
-
-            .counter-pill {
-                font-size: 11px;
-                padding: 7px 10px;
-            }
-
-            #reader,
-            .scanner-placeholder {
-                min-height: 285px;
-            }
-
-            .detected div {
-                flex-direction: column;
-                gap: 2px;
-            }
-
-            .detected strong {
-                text-align: left;
-            }
-
-            .scan-top {
-                flex-direction: column;
-                gap: 3px;
-            }
-
-            .scan-time {
-                white-space: normal;
-            }
-        }
+        *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif}
+        html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#08080c;color:#f5f5f7;touch-action:manipulation;overscroll-behavior:none}
+        button,input,select,textarea{font:inherit}
+        .app{height:100dvh;width:100%;overflow:hidden;background:radial-gradient(circle at 20% 0%,rgba(0,113,227,.38),transparent 31%),radial-gradient(circle at 95% 8%,rgba(129,86,255,.24),transparent 30%),linear-gradient(180deg,#14141c 0%,#08080c 56%,#050508 100%);display:flex;flex-direction:column}
+        .screen{display:none;min-height:0;flex:1;padding:18px 14px 92px;overflow:hidden;max-width:780px;width:100%;margin:0 auto}
+        .screen.active{display:flex;flex-direction:column}
+        .hero{padding:8px 2px 14px}
+        .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#b8b8c2;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.10);padding:7px 10px;border-radius:999px;margin-bottom:12px}
+        .dot{width:7px;height:7px;border-radius:999px;background:#34c759;box-shadow:0 0 16px rgba(52,199,89,.75)}
+        h1,h2,h3,p{margin:0}
+        .hero h1{font-size:34px;line-height:.98;font-weight:950;letter-spacing:-1.3px}
+        .hero p{color:#a1a1a6;font-size:14px;line-height:1.38;margin-top:11px}
+        .glass{background:rgba(255,255,255,.085);border:1px solid rgba(255,255,255,.115);border-radius:30px;box-shadow:0 24px 70px rgba(0,0,0,.28);backdrop-filter:blur(22px)}
+        .home-main{display:grid;grid-template-rows:auto auto 1fr;gap:13px;min-height:0}
+        .scan-cta{position:relative;overflow:hidden;padding:20px;border-radius:34px;background:linear-gradient(135deg,rgba(0,113,227,.96),rgba(101,83,255,.92));box-shadow:0 24px 65px rgba(0,113,227,.24);border:1px solid rgba(255,255,255,.18);min-height:178px;display:flex;flex-direction:column;justify-content:space-between}
+        .scan-cta:before{content:"";position:absolute;right:-50px;top:-55px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.16)}
+        .scan-cta:after{content:"▣";position:absolute;right:25px;bottom:12px;font-size:88px;font-weight:900;color:rgba(255,255,255,.16)}
+        .scan-cta h2{font-size:28px;font-weight:950;letter-spacing:-.9px;position:relative;z-index:1}
+        .scan-cta p{font-size:13px;line-height:1.35;color:rgba(255,255,255,.8);margin-top:8px;position:relative;z-index:1;max-width:72%}
+        .cta-bottom{display:flex;gap:10px;align-items:center;position:relative;z-index:1;margin-top:18px}
+        .btn{border:none;cursor:pointer;border-radius:20px;min-height:50px;padding:12px 15px;font-size:14px;font-weight:850;transition:transform .12s ease,opacity .12s ease;background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.13)}
+        .btn:active{transform:scale(.975)}
+        .btn-primary{background:#fff;color:#0a5fce;border-color:#fff;box-shadow:0 10px 24px rgba(255,255,255,.16)}
+        .btn-blue{background:linear-gradient(135deg,#0071e3,#4f8cff);color:#fff;border-color:rgba(255,255,255,.12);box-shadow:0 14px 30px rgba(0,113,227,.26)}
+        .btn-red{background:rgba(255,69,58,.14);color:#ff8b84;border-color:rgba(255,69,58,.23)}
+        .btn-green{background:rgba(52,199,89,.16);color:#7dff9d;border-color:rgba(52,199,89,.24)}
+        .btn-yellow{background:rgba(255,204,0,.15);color:#ffe27a;border-color:rgba(255,204,0,.22)}
+        .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.11)}
+        .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+        .stat{padding:13px;border-radius:23px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.10)}
+        .stat span{display:block;color:#a1a1a6;font-size:11px;font-weight:850;margin-bottom:7px}.stat strong{font-size:25px;line-height:1;font-weight:950}
+        .home-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+        .action-card{padding:15px;text-align:left;border-radius:24px;min-height:105px;display:flex;flex-direction:column;justify-content:space-between}.action-card .icon{width:37px;height:37px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.10);font-weight:900}.action-card strong{font-size:15px;letter-spacing:-.2px}.action-card span{color:#a1a1a6;font-size:12px;line-height:1.25;margin-top:3px}
+        .scanner-screen{gap:12px}.scan-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 2px 0}.scan-header h2{font-size:22px;font-weight:950;letter-spacing:-.6px}.scan-header span{color:#a1a1a6;font-size:12px}.camera-card{padding:13px;display:flex;flex-direction:column;min-height:0;flex:1}.reader-wrap{position:relative;min-height:0;flex:1;border-radius:28px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12)}
+        #reader{width:100%;height:100%;min-height:100%;background:#000}#reader video{object-fit:cover!important;border-radius:28px!important}.camera-placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:28px;background:radial-gradient(circle at center,rgba(0,113,227,.21),transparent 58%),linear-gradient(135deg,rgba(255,255,255,.11),rgba(255,255,255,.035));color:#a1a1a6}.camera-placeholder.hidden{display:none}.camera-placeholder .scan-icon{width:88px;height:88px;border-radius:31px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;margin:0 auto 15px;font-size:38px;color:#fff}.camera-placeholder strong{display:block;color:#fff;font-size:19px;margin-bottom:6px;font-weight:950}
+        .scan-controls{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:12px}.scan-controls .btn{min-height:52px}.small-counter{min-width:74px;text-align:center;padding:11px 10px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11)}.small-counter span{display:block;font-size:10px;color:#a1a1a6;font-weight:850}.small-counter strong{display:block;font-size:20px;line-height:1.05}
+        .last-scan{padding:13px;border-radius:23px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);display:flex;justify-content:space-between;gap:12px;align-items:center}.last-scan strong{font-size:13px}.last-scan span{font-size:12px;color:#a1a1a6}
+        .report-screen{gap:12px}.report-top{padding:2px}.report-top h2{font-size:24px;font-weight:950;letter-spacing:-.7px}.report-top p{color:#a1a1a6;font-size:13px;margin-top:5px}.report-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.report-actions .btn{min-height:49px}.records-card{padding:14px;min-height:0;flex:1;display:flex;flex-direction:column}.records-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.records-head h3{font-size:16px;font-weight:950}.records-head span{font-size:12px;color:#a1a1a6}.records-list{overflow:auto;min-height:0;display:flex;flex-direction:column;gap:9px;padding-right:2px}.record{border-radius:22px;padding:13px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.10)}.record-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.record-name{font-size:15px;font-weight:950;letter-spacing:-.2px;word-break:break-word}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900;background:rgba(0,113,227,.16);color:#7cbcff;border:1px solid rgba(0,113,227,.25);white-space:nowrap}.badge.monitor{background:rgba(175,82,222,.16);border-color:rgba(175,82,222,.24);color:#dda8ff}.record-meta{display:grid;gap:4px;color:#fff;font-size:12px}.record-meta span{color:#a1a1a6;font-weight:850}.record-note{margin-top:8px;padding:9px;border-radius:14px;background:rgba(255,255,255,.07);font-size:12px;line-height:1.35}.record-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.mini-btn{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.075);color:#fff;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:850;cursor:pointer}.empty{border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.045);border-radius:24px;padding:24px;text-align:center;color:#a1a1a6;font-size:13px}
+        .bottom-nav{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;width:min(340px,calc(100% - 24px));height:68px;border-radius:28px;background:rgba(24,24,30,.86);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 55px rgba(0,0,0,.38);display:grid;grid-template-columns:repeat(2,1fr);padding:7px}.nav-btn{border:none;background:transparent;color:#8e8e96;border-radius:22px;font-size:11px;font-weight:850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer}.nav-btn .nav-ico{font-size:19px}.nav-btn.active{background:rgba(255,255,255,.11);color:#fff}
+        .modal-bg{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.50);backdrop-filter:blur(18px);display:none;align-items:flex-end;justify-content:center;padding:12px}.modal-bg.visible{display:flex}.modal{width:100%;max-width:560px;max-height:calc(100dvh - 24px);overflow:auto;border-radius:34px;background:rgba(28,28,34,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 34px 90px rgba(0,0,0,.55);padding:18px}.modal h3{font-size:24px;font-weight:950;letter-spacing:-.7px}.modal p{font-size:13px;color:#a1a1a6;line-height:1.35;margin-top:6px;margin-bottom:14px}.detected{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:23px;padding:13px;display:grid;gap:7px;margin-bottom:14px}.detected div{display:flex;justify-content:space-between;gap:12px;font-size:13px}.detected span{color:#a1a1a6;font-weight:850}.detected strong{text-align:right;word-break:break-word}.warning{display:none;margin-bottom:12px;padding:11px;border-radius:18px;background:rgba(255,204,0,.13);border:1px solid rgba(255,204,0,.20);color:#ffe27a;font-size:13px;font-weight:850}.warning.visible{display:block}.field{margin-bottom:11px}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:6px}.input{width:100%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;border-radius:18px;padding:13px;font-size:15px;outline:none}.input:focus{border-color:#0071e3;box-shadow:0 0 0 3px rgba(0,113,227,.22);background:rgba(255,255,255,.11)}.input::placeholder{color:#77777d}select.input option{color:#000}textarea.input{resize:vertical;min-height:82px}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.toast{position:fixed;left:50%;bottom:92px;z-index:90;transform:translateX(-50%) translateY(16px);background:rgba(255,255,255,.94);color:#111116;padding:12px 15px;border-radius:999px;font-size:13px;font-weight:900;opacity:0;pointer-events:none;transition:.18s ease;max-width:calc(100vw - 28px);text-align:center}.toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+        @media(min-width:720px){.modal-bg{align-items:center}.screen{padding-top:24px}.camera-card{max-height:calc(100dvh - 170px)}}
+        @media(max-width:560px){.hero h1{font-size:32px}.scan-cta{min-height:170px}.scan-cta h2{font-size:26px}.stats{grid-template-columns:1fr 1fr 1fr}.stat{padding:12px}.home-actions{grid-template-columns:1fr 1fr}.action-card{min-height:98px}.report-actions{grid-template-columns:1fr 1fr}.modal-actions{grid-template-columns:1fr}.detected div{flex-direction:column;gap:2px}.detected strong{text-align:left}}
+        @media(max-height:720px){.hero h1{font-size:29px}.scan-cta{min-height:150px;padding:17px}.scan-cta p{display:none}.action-card{min-height:88px}.scanner-screen{gap:9px}.last-scan{display:none}}
     </style>
 </head>
-
 <body>
 <div class="app">
+    <section id="viewScan" class="screen scanner-screen active">
+        <div class="scan-header">
+            <div><h2>Cámara QR</h2><span id="cameraStatus">Lista para escanear</span></div>
+            <button class="mini-btn" onclick="showView('report')">Reporte</button>
+        </div>
 
-    <header class="topbar">
-        <div class="topbar-inner">
-            <div class="brand">
-                <div class="brand-icon">QR</div>
-                <div class="brand-text">
-                    <h1>Inventario TI</h1>
-                    <span>Escáner móvil</span>
+        <div class="camera-card glass">
+            <div class="reader-wrap">
+                <div id="placeholder" class="camera-placeholder">
+                    <div>
+                        <div class="scan-icon">▣</div>
+                        <strong>Cámara detenida</strong>
+                        Acerca el QR al centro cuando inicies.
+                    </div>
                 </div>
+                <div id="reader" style="display:none;"></div>
             </div>
 
-            <div class="counter-pill">
-                Hoy: <strong id="totalHoy">0</strong>
+            <div class="scan-controls">
+                <button id="btnCamera" class="btn btn-blue" onclick="toggleScanner()">Iniciar cámara</button>
+                <div class="small-counter"><span>Hoy</span><strong id="scanCounter">0</strong></div>
             </div>
         </div>
-    </header>
 
-    <main class="main">
+        <div class="last-scan">
+            <div><strong id="lastTitle">Sin escaneos recientes</strong><br><span id="lastSubtitle">Cuando guardes uno aparecerá aquí.</span></div>
+        </div>
+    </section>
 
-        <section class="hero">
-            <h2>Escanea y genera tu reporte.</h2>
-            <p>
-                Los registros se guardan en este celular. Al terminar, descarga o comparte el CSV por correo, WhatsApp o Drive.
-            </p>
-        </section>
+    <section id="viewReport" class="screen report-screen">
+        <div class="report-top">
+            <h2>Reporte del día</h2>
+            <p id="fechaHoyLabel"></p>
+        </div>
 
-        <section class="glass-card">
-            <div class="section-head">
-                <h3>Cámara</h3>
-                <span id="cameraStatus">Lista</span>
-            </div>
+        <div class="stats">
+            <div class="stat"><span>PCs</span><strong id="repPcs">0</strong></div>
+            <div class="stat"><span>Monitores</span><strong id="repMonitores">0</strong></div>
+            <div class="stat"><span>Cambios</span><strong id="repCambios">0</strong></div>
+        </div>
 
-            <div id="placeholder" class="scanner-placeholder">
-                <div>
-                    <div class="big-icon">▣</div>
-                    <strong>Escáner detenido</strong>
-                    Presiona iniciar para abrir la cámara.
-                </div>
-            </div>
+        <div class="report-actions">
+            <button class="btn btn-green" onclick="compartirCSV()">Compartir</button>
+            <button class="btn btn-yellow" onclick="prepararCorreo()">Correo</button>
+            <button class="btn btn-ghost" onclick="descargarCSV()">CSV</button>
+            <button class="btn btn-red" onclick="limpiarDia()">Limpiar</button>
+        </div>
 
-            <div id="reader" style="display:none;"></div>
+        <div class="records-card glass">
+            <div class="records-head"><h3>Escaneos de hoy</h3><span><strong id="totalLista">0</strong> registros</span></div>
+            <div id="recordsList" class="records-list"></div>
+        </div>
+    </section>
 
-            <div class="btn-row">
-                <button class="btn btn-primary" onclick="iniciarScanner()">
-                    Iniciar escáner
-                </button>
-
-                <button class="btn btn-secondary" onclick="detenerScanner()">
-                    Detener
-                </button>
-            </div>
-        </section>
-
-        <section class="glass-card">
-            <div class="section-head">
-                <h3>Reporte</h3>
-                <span id="fechaHoyLabel"></span>
-            </div>
-
-            <div class="btn-row">
-                <button class="btn btn-green" onclick="compartirCSV()">
-                    Compartir reporte
-                </button>
-
-                <button class="btn btn-mail" onclick="prepararCorreo()">
-                    Preparar correo
-                </button>
-            </div>
-
-            <div class="btn-row">
-                <button class="btn btn-secondary" onclick="descargarCSV()">
-                    Descargar CSV
-                </button>
-
-                <button class="btn btn-red" onclick="limpiarDia()">
-                    Limpiar día
-                </button>
-            </div>
-
-            <div class="note">
-                “Compartir reporte” abre el menú del celular. Ahí puedes elegir WhatsApp, correo, Drive o Archivos.
-            </div>
-        </section>
-
-        <section class="glass-card">
-            <div class="section-head">
-                <h3>Escaneos de hoy</h3>
-                <span><strong id="totalLista">0</strong> registros</span>
-            </div>
-
-            <div id="scanList" class="list"></div>
-        </section>
-
-    </main>
+    <nav class="bottom-nav">
+        <button id="navScan" class="nav-btn active" onclick="showView('scan')"><span class="nav-ico">▣</span>Escanear</button>
+        <button id="navReport" class="nav-btn" onclick="showView('report')"><span class="nav-ico">≡</span>Reporte</button>
+    </nav>
 </div>
 
 <div class="modal-bg" id="scanModal">
     <div class="modal">
-        <h3 id="modalTitle">Equipo detectado</h3>
-        <p>Confirma el escaneo o actualiza datos antes de guardarlo.</p>
+        <h3 id="modalTitle">QR detectado</h3>
+        <p id="modalDesc">Confirma el escaneo o actualiza datos antes de guardar.</p>
 
-        <div class="warning" id="duplicateWarning">
-            Este equipo ya fue escaneado hoy. Puedes cancelar o guardar otro registro.
-        </div>
+        <div class="warning" id="duplicateWarning">Este registro ya fue escaneado hoy. Puedes cancelar o guardarlo otra vez.</div>
 
-        <div class="detected">
-            <div>
-                <span>Equipo</span>
-                <strong id="detEquipo">—</strong>
-            </div>
-            <div>
-                <span>IP</span>
-                <strong id="detIp">—</strong>
-            </div>
-            <div>
-                <span>Usuario</span>
-                <strong id="detUsuario">—</strong>
-            </div>
-            <div>
-                <span>Serie</span>
-                <strong id="detSerie">—</strong>
-            </div>
-        </div>
+        <div class="detected" id="detectedBox"></div>
 
         <div class="field">
             <label>Estado nuevo</label>
@@ -724,9 +134,14 @@
             </select>
         </div>
 
-        <div class="field">
+        <div class="field" id="fieldUsuario">
             <label>Usuario nuevo</label>
             <input id="usuarioNuevo" class="input" type="text" placeholder="Dejar vacío si no cambia">
+        </div>
+
+        <div class="field" id="fieldEquipoAsignado">
+            <label>Equipo asignado nuevo</label>
+            <input id="equipoAsignadoNuevo" class="input" type="text" placeholder="Ej: 13TJPlanning">
         </div>
 
         <div class="field">
@@ -740,13 +155,8 @@
         </div>
 
         <div class="modal-actions">
-            <button class="btn btn-primary" onclick="guardarEscaneo()">
-                Guardar escaneo
-            </button>
-
-            <button class="btn btn-secondary" onclick="cerrarModal()">
-                Cancelar
-            </button>
+            <button class="btn btn-blue" onclick="guardarEscaneo()">Guardar</button>
+            <button class="btn btn-ghost" onclick="cerrarModal(true)">Cancelar</button>
         </div>
     </div>
 </div>
@@ -755,512 +165,165 @@
 
 <script>
 const REPORT_EMAIL = "cdmsoporte@calmil.com";
-const STORAGE_KEY = "inventario_ti_escaneos_movil_v1";
-
+const STORAGE_KEY = "inventario_ti_qr_pc_monitor_v3";
 let scanner = null;
 let scannerActivo = false;
 let ultimoTexto = "";
 let ultimoTiempo = 0;
-let equipoActual = null;
+let registroActual = null;
+let vistaActual = "home";
 
-function hoyISO() {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+function hoyISO(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function fechaHoraActual(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:${String(d.getSeconds()).padStart(2,"0")}`}
+function horaCorta(f){return(!f||f.length<16)?(f||""):f.substring(11,16)}
+function limpiarTexto(v){return(v||"").toString().trim()}
+function cargarRegistros(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")}catch{return[]}}
+function guardarRegistros(r){localStorage.setItem(STORAGE_KEY,JSON.stringify(r))}
+function registrosHoy(){const h=hoyISO();return cargarRegistros().filter(r=>(r.fecha_escaneo||"").startsWith(h))}
+function escapeHTML(t){return(t||"").toString().replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function mostrarToast(texto){const toast=document.getElementById("toast");toast.textContent=texto;toast.classList.add("visible");setTimeout(()=>toast.classList.remove("visible"),1800)}
+
+function showView(v){
+    if(v!=="scan" && v!=="report") v="scan";
+    vistaActual=v;
+    document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+    document.getElementById("view"+cap(v)).classList.add("active");
+    document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+    const nav=document.getElementById("nav"+cap(v));
+    if(nav) nav.classList.add("active");
+    if(v!=="scan"&&scannerActivo)detenerScanner();
+    renderAll()
 }
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 
-function fechaHoraActual() {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}:${String(d.getSeconds()).padStart(2, "0")}`;
-}
-
-function horaCorta(fechaHora) {
-    if (!fechaHora || fechaHora.length < 16) return fechaHora || "";
-    return fechaHora.substring(11, 16);
-}
-
-function cargarRegistros() {
-    try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    } catch {
-        return [];
+function parsearQR(texto){
+    const original=limpiarTexto(texto);
+    const data={raw:original,tipo_registro:"PC",nombre_equipo:"",ip:"",usuario:"",serie:"",monitor_marca:"",monitor_modelo:"",monitor_tamano:"",monitor_serie:"",equipo_asignado:""};
+    if(!original)return data;
+    const lineas=original.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+    for(const linea of lineas){
+        const partes=linea.split(":"); if(partes.length<2)continue;
+        const clave=partes.shift().trim().toLowerCase(); const valor=partes.join(":").trim();
+        if(["tipo","tipo_registro","registro"].includes(clave)){ if(valor.toLowerCase().includes("monitor"))data.tipo_registro="Monitor"; if(valor.toLowerCase().includes("pc")||valor.toLowerCase().includes("equipo"))data.tipo_registro="PC"; }
+        else if(["equipo","nombre","pc","nombre_equipo"].includes(clave)){ data.nombre_equipo=valor; }
+        else if(clave==="ip"){ data.ip=valor; }
+        else if(["usuario","user"].includes(clave)){ data.usuario=valor; }
+        else if(["serie","serial"].includes(clave)){ data.serie=valor; data.monitor_serie=valor; }
+        else if(["marca","monitor_marca"].includes(clave)){ data.monitor_marca=valor; }
+        else if(["modelo","monitor_modelo"].includes(clave)){ data.monitor_modelo=valor; }
+        else if(["marca/modelo","marca modelo"].includes(clave)){ const p=valor.split(/\s+/); data.monitor_marca=p.shift()||""; data.monitor_modelo=p.join(" ")||valor; }
+        else if(["tamaño","tamano","tamano_pulgadas","tamaño_pulgadas"].includes(clave)){ data.monitor_tamano=valor.replace('"',''); }
+        else if(["equipo asignado","asignado a","equipo_asignado"].includes(clave)){ data.equipo_asignado=valor; }
     }
-}
-
-function guardarRegistros(registros) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(registros));
-}
-
-function registrosHoy() {
-    const hoy = hoyISO();
-    return cargarRegistros().filter(r => (r.fecha_escaneo || "").startsWith(hoy));
-}
-
-function limpiarTexto(valor) {
-    return (valor || "").toString().trim();
-}
-
-function mostrarToast(texto) {
-    const toast = document.getElementById("toast");
-    toast.textContent = texto;
-    toast.classList.add("visible");
-
-    setTimeout(() => {
-        toast.classList.remove("visible");
-    }, 1900);
-}
-
-function parsearQR(texto) {
-    const original = limpiarTexto(texto);
-
-    const data = {
-        raw: original,
-        nombre_equipo: "",
-        ip: "",
-        usuario: "",
-        serie: ""
-    };
-
-    if (!original) return data;
-
-    const lineas = original.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-
-    for (const linea of lineas) {
-        const partes = linea.split(":");
-        if (partes.length < 2) continue;
-
-        const clave = partes.shift().trim().toLowerCase();
-        const valor = partes.join(":").trim();
-
-        if (clave === "equipo" || clave === "nombre" || clave === "pc") {
-            data.nombre_equipo = valor;
-        } else if (clave === "ip") {
-            data.ip = valor;
-        } else if (clave === "usuario" || clave === "user") {
-            data.usuario = valor;
-        } else if (clave === "serie" || clave === "serial") {
-            data.serie = valor;
-        }
+    const lower=original.toLowerCase();
+    if(lower.includes("tipo: monitor")||lower.includes("monitor")) data.tipo_registro="Monitor";
+    if(data.tipo_registro==="Monitor"){
+        if(!data.monitor_modelo && data.nombre_equipo && data.nombre_equipo.toLowerCase().includes("monitor")) data.monitor_modelo=data.nombre_equipo;
+        if(!data.nombre_equipo) data.nombre_equipo = [data.monitor_marca,data.monitor_modelo,data.monitor_tamano?data.monitor_tamano+'\"':'' ].filter(Boolean).join(" ") || data.monitor_serie || "Monitor";
+        if(!data.monitor_serie) data.monitor_serie=data.serie;
+    } else {
+        if(!data.nombre_equipo){const posible=lineas.find(l=>!l.toLowerCase().includes("inventario")&&!l.includes(":"));data.nombre_equipo=posible||original;}
     }
-
-    if (!data.nombre_equipo) {
-        const posibleNombre = lineas.find(l => {
-            const lower = l.toLowerCase();
-            return !lower.includes("inventario") && !lower.includes(":");
-        });
-
-        data.nombre_equipo = posibleNombre || original;
-    }
-
     return data;
 }
 
-function existeHoy(nombreEquipo) {
-    const nombre = limpiarTexto(nombreEquipo).toLowerCase();
-    if (!nombre) return false;
+function keyRegistro(r){return `${r.tipo_registro}|${r.tipo_registro==='Monitor'?(r.monitor_serie||r.nombre_equipo):(r.nombre_equipo)}`.toLowerCase()}
+function existeHoy(r){const k=keyRegistro(r);return registrosHoy().some(x=>keyRegistro(x)===k)}
+function cryptoRandomId(){return crypto&&crypto.randomUUID?crypto.randomUUID():"id_"+Date.now()+"_"+Math.random().toString(16).slice(2)}
 
-    return registrosHoy().some(r => limpiarTexto(r.nombre_equipo).toLowerCase() === nombre);
+async function toggleScanner(){scannerActivo?detenerScanner():iniciarScanner()}
+async function iniciarScanner(){
+    if(scannerActivo)return mostrarToast("La cámara ya está activa");
+    document.getElementById("placeholder").classList.add("hidden");document.getElementById("reader").style.display="block";document.getElementById("cameraStatus").textContent="Iniciando...";
+    scanner=new Html5Qrcode("reader");
+    try{
+        const config={fps:10,qrbox:(w,h)=>{const s=Math.floor(Math.min(w,h)*.72);return{width:s,height:s}},aspectRatio:1.0};
+        await scanner.start({facingMode:"environment"},config,onScanSuccess,()=>{});
+        scannerActivo=true;document.getElementById("cameraStatus").textContent="Escaneando";document.getElementById("btnCamera").textContent="Detener cámara";document.getElementById("btnCamera").className="btn btn-red";mostrarToast("Cámara activa");
+    }catch(e){console.error(e);scannerActivo=false;scanner=null;document.getElementById("cameraStatus").textContent="Error";document.getElementById("placeholder").classList.remove("hidden");document.getElementById("reader").style.display="none";mostrarToast("No se pudo abrir la cámara")}
+}
+async function detenerScanner(){
+    if(scanner&&scannerActivo){try{await scanner.stop();await scanner.clear()}catch(e){console.warn(e)}}
+    scannerActivo=false;scanner=null;document.getElementById("reader").style.display="none";document.getElementById("placeholder").classList.remove("hidden");document.getElementById("cameraStatus").textContent="Lista para escanear";document.getElementById("btnCamera").textContent="Iniciar cámara";document.getElementById("btnCamera").className="btn btn-blue";
+}
+function onScanSuccess(decodedText){
+    const ahora=Date.now(); if(decodedText===ultimoTexto&&(ahora-ultimoTiempo)<2200)return; ultimoTexto=decodedText;ultimoTiempo=ahora;
+    const data=parsearQR(decodedText); if(!data.nombre_equipo)return mostrarToast("QR no válido");
+    detenerScanner().then(()=>abrirModal(data));
 }
 
-function actualizarContadores() {
-    const total = registrosHoy().length;
-    document.getElementById("totalHoy").textContent = total;
-    document.getElementById("totalLista").textContent = total;
-    document.getElementById("fechaHoyLabel").textContent = hoyISO();
-}
-
-function renderRegistros() {
-    const lista = document.getElementById("scanList");
-    const registros = registrosHoy().sort((a, b) => (b.fecha_escaneo || "").localeCompare(a.fecha_escaneo || ""));
-
-    actualizarContadores();
-
-    if (registros.length === 0) {
-        lista.innerHTML = `<div class="empty">Todavía no hay escaneos hoy.</div>`;
-        return;
-    }
-
-    lista.innerHTML = registros.map(r => {
-        const cambios = [];
-
-        if (r.estado_nuevo) cambios.push(`<div><span>Estado nuevo:</span> ${escapeHTML(r.estado_nuevo)}</div>`);
-        if (r.usuario_nuevo) cambios.push(`<div><span>Usuario nuevo:</span> ${escapeHTML(r.usuario_nuevo)}</div>`);
-        if (r.ubicacion_nueva) cambios.push(`<div><span>Ubicación nueva:</span> ${escapeHTML(r.ubicacion_nueva)}</div>`);
-
-        return `
-            <div class="scan-item">
-                <div class="scan-top">
-                    <div class="scan-name">${escapeHTML(r.nombre_equipo || "SIN NOMBRE")}</div>
-                    <div class="scan-time">${escapeHTML(horaCorta(r.fecha_escaneo))}</div>
-                </div>
-
-                <div class="scan-meta">
-                    <div><span>IP:</span> ${escapeHTML(r.ip || "-")}</div>
-                    <div><span>Usuario:</span> ${escapeHTML(r.usuario || "-")}</div>
-                    <div><span>Serie:</span> ${escapeHTML(r.serie || "-")}</div>
-                    ${cambios.join("")}
-                </div>
-
-                ${r.nota ? `<div class="scan-note">${escapeHTML(r.nota)}</div>` : ""}
-
-                <div class="mini-actions">
-                    <button class="mini-btn" onclick="editarRegistro('${r.id}')">Editar</button>
-                    <button class="mini-btn" onclick="eliminarRegistro('${r.id}')">Eliminar</button>
-                </div>
-            </div>
-        `;
-    }).join("");
-}
-
-function escapeHTML(texto) {
-    return (texto || "").toString()
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
-
-async function iniciarScanner() {
-    if (scannerActivo) {
-        mostrarToast("El escáner ya está activo");
-        return;
-    }
-
-    document.getElementById("placeholder").style.display = "none";
-    document.getElementById("reader").style.display = "block";
-    document.getElementById("cameraStatus").textContent = "Iniciando...";
-
-    scanner = new Html5Qrcode("reader");
-
-    try {
-        const config = {
-            fps: 10,
-            qrbox: function(viewfinderWidth, viewfinderHeight) {
-                const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-                const size = Math.floor(minEdge * 0.72);
-                return { width: size, height: size };
-            },
-            aspectRatio: 1.0
-        };
-
-        await scanner.start(
-            { facingMode: "environment" },
-            config,
-            onScanSuccess,
-            function() {}
-        );
-
-        scannerActivo = true;
-        document.getElementById("cameraStatus").textContent = "Escaneando";
-        mostrarToast("Cámara activa");
-    } catch (error) {
-        console.error(error);
-        document.getElementById("cameraStatus").textContent = "Error";
-        document.getElementById("placeholder").style.display = "grid";
-        document.getElementById("reader").style.display = "none";
-        mostrarToast("No se pudo abrir la cámara");
-    }
-}
-
-async function detenerScanner() {
-    if (!scanner || !scannerActivo) {
-        document.getElementById("cameraStatus").textContent = "Detenida";
-        return;
-    }
-
-    try {
-        await scanner.stop();
-        await scanner.clear();
-    } catch (error) {
-        console.warn(error);
-    }
-
-    scannerActivo = false;
-    scanner = null;
-
-    document.getElementById("reader").style.display = "none";
-    document.getElementById("placeholder").style.display = "grid";
-    document.getElementById("cameraStatus").textContent = "Detenida";
-}
-
-function onScanSuccess(decodedText) {
-    const ahora = Date.now();
-
-    if (decodedText === ultimoTexto && (ahora - ultimoTiempo) < 2200) {
-        return;
-    }
-
-    ultimoTexto = decodedText;
-    ultimoTiempo = ahora;
-
-    const data = parsearQR(decodedText);
-
-    if (!data.nombre_equipo) {
-        mostrarToast("QR no válido");
-        return;
-    }
-
-    abrirModal(data);
-}
-
-function abrirModal(data, registroExistente = null) {
-    equipoActual = registroExistente ? {...registroExistente} : {
-        id: cryptoRandomId(),
-        nombre_equipo: data.nombre_equipo || "",
-        ip: data.ip || "",
-        usuario: data.usuario || "",
-        serie: data.serie || "",
-        raw: data.raw || "",
-        fecha_escaneo: fechaHoraActual(),
-        accion: "confirmar",
-        estado_nuevo: "",
-        usuario_nuevo: "",
-        ubicacion_nueva: "",
-        nota: ""
-    };
-
-    document.getElementById("detEquipo").textContent = equipoActual.nombre_equipo || "—";
-    document.getElementById("detIp").textContent = equipoActual.ip || "—";
-    document.getElementById("detUsuario").textContent = equipoActual.usuario || "—";
-    document.getElementById("detSerie").textContent = equipoActual.serie || "—";
-
-    document.getElementById("estadoNuevo").value = equipoActual.estado_nuevo || "";
-    document.getElementById("usuarioNuevo").value = equipoActual.usuario_nuevo || "";
-    document.getElementById("ubicacionNueva").value = equipoActual.ubicacion_nueva || "";
-    document.getElementById("nota").value = equipoActual.nota || "";
-
-    const duplicado = !registroExistente && existeHoy(equipoActual.nombre_equipo);
-    document.getElementById("duplicateWarning").classList.toggle("visible", duplicado);
-
-    document.getElementById("modalTitle").textContent = registroExistente ? "Editar registro" : "Equipo detectado";
+function abrirModal(data, existente=null){
+    registroActual = existente ? {...existente} : {...data,id:cryptoRandomId(),fecha_escaneo:fechaHoraActual(),accion:"confirmar",estado_nuevo:"",usuario_nuevo:"",ubicacion_nueva:"",equipo_asignado_nuevo:"",nota:""};
+    const esMonitor=registroActual.tipo_registro==="Monitor";
+    document.getElementById("modalTitle").textContent=esMonitor?"Monitor detectado":"PC detectada";
+    document.getElementById("modalDesc").textContent=esMonitor?"Confirma el monitor o cambia asignación, estado, ubicación o nota.":"Confirma la PC o cambia usuario, estado, ubicación o nota.";
+    document.getElementById("fieldUsuario").style.display=esMonitor?"none":"block";
+    document.getElementById("fieldEquipoAsignado").style.display=esMonitor?"block":"none";
+    document.getElementById("detectedBox").innerHTML = esMonitor ? monitorDetectedHTML(registroActual) : pcDetectedHTML(registroActual);
+    document.getElementById("estadoNuevo").value=registroActual.estado_nuevo||"";
+    document.getElementById("usuarioNuevo").value=registroActual.usuario_nuevo||"";
+    document.getElementById("ubicacionNueva").value=registroActual.ubicacion_nueva||"";
+    document.getElementById("equipoAsignadoNuevo").value=registroActual.equipo_asignado_nuevo||"";
+    document.getElementById("nota").value=registroActual.nota||"";
+    document.getElementById("duplicateWarning").classList.toggle("visible",!existente&&existeHoy(registroActual));
     document.getElementById("scanModal").classList.add("visible");
 }
+function pcDetectedHTML(r){return `<div><span>Equipo</span><strong>${escapeHTML(r.nombre_equipo||"—")}</strong></div><div><span>IP</span><strong>${escapeHTML(r.ip||"—")}</strong></div><div><span>Usuario</span><strong>${escapeHTML(r.usuario||"—")}</strong></div><div><span>Serie</span><strong>${escapeHTML(r.serie||"—")}</strong></div>`}
+function monitorDetectedHTML(r){return `<div><span>Monitor</span><strong>${escapeHTML([r.monitor_marca,r.monitor_modelo].filter(Boolean).join(" ")||r.nombre_equipo||"—")}</strong></div><div><span>Tamaño</span><strong>${escapeHTML(r.monitor_tamano? r.monitor_tamano+'\"':'—')}</strong></div><div><span>Serie</span><strong>${escapeHTML(r.monitor_serie||r.serie||"—")}</strong></div><div><span>Asignado a</span><strong>${escapeHTML(r.equipo_asignado||"—")}</strong></div>`}
+function cerrarModal(reabrir=false){document.getElementById("scanModal").classList.remove("visible");registroActual=null;if(reabrir&&vistaActual==="scan")setTimeout(()=>iniciarScanner(),250)}
+function guardarEscaneo(){
+    if(!registroActual)return;
+    registroActual.estado_nuevo=limpiarTexto(document.getElementById("estadoNuevo").value);
+    registroActual.usuario_nuevo=limpiarTexto(document.getElementById("usuarioNuevo").value);
+    registroActual.ubicacion_nueva=limpiarTexto(document.getElementById("ubicacionNueva").value);
+    registroActual.equipo_asignado_nuevo=limpiarTexto(document.getElementById("equipoAsignadoNuevo").value);
+    registroActual.nota=limpiarTexto(document.getElementById("nota").value);
+    registroActual.accion=(registroActual.estado_nuevo||registroActual.usuario_nuevo||registroActual.ubicacion_nueva||registroActual.equipo_asignado_nuevo||registroActual.nota)?"actualizar":"confirmar";
+    const regs=cargarRegistros();const idx=regs.findIndex(r=>r.id===registroActual.id); if(idx>=0)regs[idx]=registroActual;else regs.push(registroActual);guardarRegistros(regs);
+    document.getElementById("lastTitle").textContent=(registroActual.tipo_registro==="Monitor"?"Monitor":"PC")+" guardado";document.getElementById("lastSubtitle").textContent=registroActual.nombre_equipo||registroActual.monitor_modelo||"Registro guardado";
+    cerrarModal(false);renderAll();mostrarToast("Escaneo guardado"); if(vistaActual==="scan")setTimeout(()=>iniciarScanner(),280);
+}
+function editarRegistro(id){const r=cargarRegistros().find(x=>x.id===id);if(!r)return mostrarToast("No se encontró");abrirModal(r,r)}
+function eliminarRegistro(id){if(!confirm("¿Eliminar este registro?"))return;guardarRegistros(cargarRegistros().filter(r=>r.id!==id));renderAll();mostrarToast("Registro eliminado")}
+function limpiarDia(){if(!confirm("¿Limpiar todos los escaneos de hoy?"))return;const h=hoyISO();guardarRegistros(cargarRegistros().filter(r=>!(r.fecha_escaneo||"").startsWith(h)));renderAll();mostrarToast("Día limpiado")}
 
-function cerrarModal() {
-    document.getElementById("scanModal").classList.remove("visible");
-    equipoActual = null;
+function stats(){const regs=registrosHoy();return{total:regs.length,pcs:regs.filter(r=>r.tipo_registro!=="Monitor").length,monitores:regs.filter(r=>r.tipo_registro==="Monitor").length,cambios:regs.filter(r=>r.estado_nuevo||r.usuario_nuevo||r.ubicacion_nueva||r.equipo_asignado_nuevo||r.nota).length}}
+function renderAll(){
+    const s=stats();
+    const repPcs=document.getElementById("repPcs");
+    const repMonitores=document.getElementById("repMonitores");
+    const repCambios=document.getElementById("repCambios");
+    if(repPcs) repPcs.textContent=s.pcs;
+    if(repMonitores) repMonitores.textContent=s.monitores;
+    if(repCambios) repCambios.textContent=s.cambios;
+    document.getElementById("scanCounter").textContent=s.total;
+    document.getElementById("totalLista").textContent=s.total;
+    document.getElementById("fechaHoyLabel").textContent=`${hoyISO()} · ${s.total} registros`;
+    renderRegistros()
+}
+function renderRegistros(){
+    const list=document.getElementById("recordsList");const regs=registrosHoy().sort((a,b)=>(b.fecha_escaneo||"").localeCompare(a.fecha_escaneo||""));
+    if(regs.length===0){list.innerHTML='<div class="empty">Todavía no hay escaneos hoy.</div>';return}
+    list.innerHTML=regs.map(r=>{
+        const mon=r.tipo_registro==="Monitor"; const changes=[];
+        if(r.estado_nuevo)changes.push(`<div><span>Estado:</span> ${escapeHTML(r.estado_nuevo)}</div>`); if(r.usuario_nuevo)changes.push(`<div><span>Usuario nuevo:</span> ${escapeHTML(r.usuario_nuevo)}</div>`); if(r.equipo_asignado_nuevo)changes.push(`<div><span>Asignado nuevo:</span> ${escapeHTML(r.equipo_asignado_nuevo)}</div>`); if(r.ubicacion_nueva)changes.push(`<div><span>Ubicación:</span> ${escapeHTML(r.ubicacion_nueva)}</div>`);
+        const title=mon?([r.monitor_marca,r.monitor_modelo].filter(Boolean).join(" ")||r.nombre_equipo||"Monitor"):(r.nombre_equipo||"SIN NOMBRE");
+        const meta=mon?`<div><span>Serie:</span> ${escapeHTML(r.monitor_serie||r.serie||"-")}</div><div><span>Tamaño:</span> ${escapeHTML(r.monitor_tamano? r.monitor_tamano+'\"':'-')}</div><div><span>Asignado a:</span> ${escapeHTML(r.equipo_asignado||"-")}</div>`:`<div><span>IP:</span> ${escapeHTML(r.ip||"-")}</div><div><span>Usuario:</span> ${escapeHTML(r.usuario||"-")}</div><div><span>Serie:</span> ${escapeHTML(r.serie||"-")}</div>`;
+        return `<div class="record"><div class="record-top"><div class="record-name">${escapeHTML(title)}</div><div class="badge ${mon?'monitor':''}">${mon?'Monitor':'PC'} · ${escapeHTML(horaCorta(r.fecha_escaneo))}</div></div><div class="record-meta">${meta}${changes.join("")}</div>${r.nota?`<div class="record-note">${escapeHTML(r.nota)}</div>`:""}<div class="record-actions"><button class="mini-btn" onclick="editarRegistro('${r.id}')">Editar</button><button class="mini-btn" onclick="eliminarRegistro('${r.id}')">Eliminar</button></div></div>`
+    }).join("")
 }
 
-function guardarEscaneo() {
-    if (!equipoActual) return;
+function obtenerCSV(){const regs=registrosHoy();if(!regs.length)return"";const cols=["tipo_registro","nombre_equipo","ip","usuario","serie","monitor_marca","monitor_modelo","monitor_tamano","monitor_serie","equipo_asignado","accion","estado_nuevo","usuario_nuevo","ubicacion_nueva","equipo_asignado_nuevo","nota","fecha_escaneo"];return[cols.join(","),...regs.map(r=>cols.map(c=>csvValue(r[c]||"")).join(","))].join("\n")}
+function csvValue(v){const t=(v||"").toString();return `"${t.replaceAll('"','""')}"`}
+function nombreArchivoCSV(){return`escaneos_qr_${hoyISO()}.csv`}
+function descargarCSV(){const csv=obtenerCSV();if(!csv)return mostrarToast("No hay registros");const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=nombreArchivoCSV();document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);mostrarToast("CSV descargado")}
+async function compartirCSV(){const csv=obtenerCSV();if(!csv)return mostrarToast("No hay registros para compartir");const archivo=new File([csv],nombreArchivoCSV(),{type:"text/csv"});if(navigator.canShare&&navigator.canShare({files:[archivo]})){try{await navigator.share({title:`Reporte QR ${hoyISO()}`,text:generarTextoReporte(),files:[archivo]});mostrarToast("Reporte compartido");return}catch(e){if(e.name!=="AbortError")console.warn(e)}}descargarCSV();mostrarToast("Se descargó el CSV")}
+function prepararCorreo(){if(!registrosHoy().length)return mostrarToast("No hay registros");const subject=`Reporte de escaneos QR - ${hoyISO()}`;const body=generarTextoReporte()+"\n\nNota: adjunto/comparto el CSV generado desde la app móvil.";window.location.href=`mailto:${encodeURIComponent(REPORT_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
+function generarTextoReporte(){const s=stats();return`Hola,\n\nAquí está el reporte de escaneos QR del día ${hoyISO()}.\n\nResumen:\n- PCs escaneadas: ${s.pcs}\n- Monitores escaneados: ${s.monitores}\n- Registros con cambios o notas: ${s.cambios}\n\nEl archivo CSV contiene el detalle para importarlo al sistema de inventario.\n\nSaludos.`}
 
-    equipoActual.estado_nuevo = limpiarTexto(document.getElementById("estadoNuevo").value);
-    equipoActual.usuario_nuevo = limpiarTexto(document.getElementById("usuarioNuevo").value);
-    equipoActual.ubicacion_nueva = limpiarTexto(document.getElementById("ubicacionNueva").value);
-    equipoActual.nota = limpiarTexto(document.getElementById("nota").value);
-
-    equipoActual.accion = (
-        equipoActual.estado_nuevo ||
-        equipoActual.usuario_nuevo ||
-        equipoActual.ubicacion_nueva ||
-        equipoActual.nota
-    ) ? "actualizar" : "confirmar";
-
-    let registros = cargarRegistros();
-    const index = registros.findIndex(r => r.id === equipoActual.id);
-
-    if (index >= 0) {
-        registros[index] = equipoActual;
-    } else {
-        registros.push(equipoActual);
-    }
-
-    guardarRegistros(registros);
-    cerrarModal();
-    renderRegistros();
-    mostrarToast("Escaneo guardado");
-}
-
-function editarRegistro(id) {
-    const registro = cargarRegistros().find(r => r.id === id);
-
-    if (!registro) {
-        mostrarToast("No se encontró el registro");
-        return;
-    }
-
-    abrirModal({
-        nombre_equipo: registro.nombre_equipo,
-        ip: registro.ip,
-        usuario: registro.usuario,
-        serie: registro.serie,
-        raw: registro.raw
-    }, registro);
-}
-
-function eliminarRegistro(id) {
-    if (!confirm("¿Eliminar este escaneo?")) return;
-
-    const registros = cargarRegistros().filter(r => r.id !== id);
-    guardarRegistros(registros);
-    renderRegistros();
-    mostrarToast("Registro eliminado");
-}
-
-function limpiarDia() {
-    const hoy = hoyISO();
-
-    if (!confirm("¿Limpiar todos los escaneos de hoy?")) return;
-
-    const registros = cargarRegistros().filter(r => !(r.fecha_escaneo || "").startsWith(hoy));
-    guardarRegistros(registros);
-    renderRegistros();
-    mostrarToast("Escaneos de hoy eliminados");
-}
-
-function obtenerCSV() {
-    const registros = registrosHoy();
-
-    if (registros.length === 0) {
-        return "";
-    }
-
-    const columnas = [
-        "nombre_equipo",
-        "ip",
-        "usuario",
-        "serie",
-        "accion",
-        "estado_nuevo",
-        "usuario_nuevo",
-        "ubicacion_nueva",
-        "nota",
-        "fecha_escaneo"
-    ];
-
-    const filas = [
-        columnas.join(","),
-        ...registros.map(r => columnas.map(c => csvValue(r[c] || "")).join(","))
-    ];
-
-    return filas.join("\n");
-}
-
-function nombreArchivoCSV() {
-    return `escaneos_qr_${hoyISO()}.csv`;
-}
-
-function descargarCSV() {
-    const csv = obtenerCSV();
-
-    if (!csv) {
-        mostrarToast("No hay escaneos para exportar");
-        return;
-    }
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = nombreArchivoCSV();
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(url);
-    mostrarToast("CSV descargado");
-}
-
-async function compartirCSV() {
-    const csv = obtenerCSV();
-
-    if (!csv) {
-        mostrarToast("No hay escaneos para compartir");
-        return;
-    }
-
-    const archivo = new File(
-        [csv],
-        nombreArchivoCSV(),
-        { type: "text/csv" }
-    );
-
-    const texto = generarTextoReporte();
-
-    if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
-        try {
-            await navigator.share({
-                title: `Reporte de escaneos QR ${hoyISO()}`,
-                text: texto,
-                files: [archivo]
-            });
-
-            mostrarToast("Reporte compartido");
-            return;
-        } catch (error) {
-            if (error.name !== "AbortError") {
-                console.warn(error);
-            }
-        }
-    }
-
-    descargarCSV();
-    mostrarToast("Tu celular no soportó compartir archivo. Se descargó el CSV.");
-}
-
-function prepararCorreo() {
-    const registros = registrosHoy();
-
-    if (registros.length === 0) {
-        mostrarToast("No hay escaneos para reportar");
-        return;
-    }
-
-    const subject = `Reporte de escaneos QR - ${hoyISO()}`;
-    const body = generarTextoReporte() + `
-
-Nota: adjunto/comparto el archivo CSV generado desde la app móvil para importarlo al inventario TI.`;
-
-    const url = `mailto:${encodeURIComponent(REPORT_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = url;
-}
-
-function generarTextoReporte() {
-    const registros = registrosHoy();
-
-    const actualizaciones = registros.filter(r =>
-        r.estado_nuevo || r.usuario_nuevo || r.ubicacion_nueva || r.nota
-    ).length;
-
-    return `Hola,
-
-Aquí está el reporte de escaneos QR del día ${hoyISO()}.
-
-Resumen:
-- Equipos escaneados: ${registros.length}
-- Registros con cambios o notas: ${actualizaciones}
-
-El archivo CSV contiene el detalle para importarlo al sistema de inventario.
-
-Saludos.`;
-}
-
-function csvValue(valor) {
-    const text = (valor || "").toString();
-    return `"${text.replaceAll('"', '""')}"`;
-}
-
-function cryptoRandomId() {
-    if (window.crypto && crypto.randomUUID) {
-        return crypto.randomUUID();
-    }
-
-    return "id_" + Date.now() + "_" + Math.random().toString(16).slice(2);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("fechaHoyLabel").textContent = hoyISO();
-    renderRegistros();
-});
-
-document.addEventListener("gesturestart", function(e) {
-    e.preventDefault();
-});
-
-document.addEventListener("dblclick", function(e) {
-    e.preventDefault();
-}, { passive: false });
+document.addEventListener("DOMContentLoaded",()=>{renderAll()});
+document.addEventListener("gesturestart",e=>e.preventDefault());
+document.addEventListener("dblclick",e=>e.preventDefault(),{passive:false});
 </script>
 </body>
 </html>
