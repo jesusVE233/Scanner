@@ -44,12 +44,41 @@
         #reader{width:100%;height:100%;min-height:100%;background:#000}#reader video{object-fit:cover!important;border-radius:28px!important}.camera-placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:28px;background:radial-gradient(circle at center,rgba(0,113,227,.21),transparent 58%),linear-gradient(135deg,rgba(255,255,255,.11),rgba(255,255,255,.035));color:#a1a1a6}.camera-placeholder.hidden{display:none}.camera-placeholder .scan-icon{width:88px;height:88px;border-radius:31px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;margin:0 auto 15px;font-size:38px;color:#fff}.camera-placeholder strong{display:block;color:#fff;font-size:19px;margin-bottom:6px;font-weight:950}
         .scan-controls{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:12px}.scan-controls .btn{min-height:52px}.small-counter{min-width:74px;text-align:center;padding:11px 10px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11)}.small-counter span{display:block;font-size:10px;color:#a1a1a6;font-weight:850}.small-counter strong{display:block;font-size:20px;line-height:1.05}
         .last-scan{padding:13px;border-radius:23px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);display:flex;justify-content:space-between;gap:12px;align-items:center}.last-scan strong{font-size:13px}.last-scan span{font-size:12px;color:#a1a1a6}
-        .report-screen{gap:12px}.report-top{padding:2px}.report-top h2{font-size:24px;font-weight:950;letter-spacing:-.7px}.report-top p{color:#a1a1a6;font-size:13px;margin-top:5px}.report-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.report-actions .btn{min-height:49px}.records-card{padding:14px;min-height:0;flex:1;display:flex;flex-direction:column}.records-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.records-head h3{font-size:16px;font-weight:950}.records-head span{font-size:12px;color:#a1a1a6}.records-list{overflow:auto;min-height:0;display:flex;flex-direction:column;gap:9px;padding-right:2px}.record{border-radius:22px;padding:13px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.10)}.record-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.record-name{font-size:15px;font-weight:950;letter-spacing:-.2px;word-break:break-word}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900;background:rgba(0,113,227,.16);color:#7cbcff;border:1px solid rgba(0,113,227,.25);white-space:nowrap}.badge.monitor{background:rgba(175,82,222,.16);border-color:rgba(175,82,222,.24);color:#dda8ff}.record-meta{display:grid;gap:4px;color:#fff;font-size:12px}.record-meta span{color:#a1a1a6;font-weight:850}.record-note{margin-top:8px;padding:9px;border-radius:14px;background:rgba(255,255,255,.07);font-size:12px;line-height:1.35}.record-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.mini-btn{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.075);color:#fff;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:850;cursor:pointer}.empty{border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.045);border-radius:24px;padding:24px;text-align:center;color:#a1a1a6;font-size:13px}
+        .report-screen{gap:12px}.report-top{padding:2px}.report-top h2{font-size:24px;font-weight:950;letter-spacing:-.7px}.report-top p{color:#a1a1a6;font-size:13px;margin-top:5px}.report-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.report-actions.report-actions-3 .report-main{grid-column:1/-1}.report-actions .btn{min-height:49px}.records-card{padding:14px;min-height:0;flex:1;display:flex;flex-direction:column}.records-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.records-head h3{font-size:16px;font-weight:950}.records-head span{font-size:12px;color:#a1a1a6}.records-list{overflow:auto;min-height:0;display:flex;flex-direction:column;gap:9px;padding-right:2px}.record{border-radius:22px;padding:13px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.10)}.record-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.record-name{font-size:15px;font-weight:950;letter-spacing:-.2px;word-break:break-word}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900;background:rgba(0,113,227,.16);color:#7cbcff;border:1px solid rgba(0,113,227,.25);white-space:nowrap}.badge.monitor{background:rgba(175,82,222,.16);border-color:rgba(175,82,222,.24);color:#dda8ff}.record-meta{display:grid;gap:4px;color:#fff;font-size:12px}.record-meta span{color:#a1a1a6;font-weight:850}.record-note{margin-top:8px;padding:9px;border-radius:14px;background:rgba(255,255,255,.07);font-size:12px;line-height:1.35}.record-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.mini-btn{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.075);color:#fff;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:850;cursor:pointer}.empty{border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.045);border-radius:24px;padding:24px;text-align:center;color:#a1a1a6;font-size:13px}
         .bottom-nav{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;width:min(340px,calc(100% - 24px));height:68px;border-radius:28px;background:rgba(24,24,30,.86);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 55px rgba(0,0,0,.38);display:grid;grid-template-columns:repeat(2,1fr);padding:7px}.nav-btn{border:none;background:transparent;color:#8e8e96;border-radius:22px;font-size:11px;font-weight:850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer}.nav-btn .nav-ico{font-size:19px}.nav-btn.active{background:rgba(255,255,255,.11);color:#fff}
         .modal-bg{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.50);backdrop-filter:blur(18px);display:none;align-items:flex-end;justify-content:center;padding:12px}.modal-bg.visible{display:flex}.modal{width:100%;max-width:560px;max-height:calc(100dvh - 24px);overflow:auto;border-radius:34px;background:rgba(28,28,34,.97);border:1px solid rgba(255,255,255,.14);box-shadow:0 34px 90px rgba(0,0,0,.55);padding:18px}.modal h3{font-size:24px;font-weight:950;letter-spacing:-.7px}.modal p{font-size:13px;color:#a1a1a6;line-height:1.35;margin-top:6px;margin-bottom:14px}.detected{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:23px;padding:13px;display:grid;gap:7px;margin-bottom:14px}.detected div{display:flex;justify-content:space-between;gap:12px;font-size:13px}.detected span{color:#a1a1a6;font-weight:850}.detected strong{text-align:right;word-break:break-word}.warning{display:none;margin-bottom:12px;padding:11px;border-radius:18px;background:rgba(255,204,0,.13);border:1px solid rgba(255,204,0,.20);color:#ffe27a;font-size:13px;font-weight:850}.warning.visible{display:block}.field{margin-bottom:11px}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:6px}.input{width:100%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;border-radius:18px;padding:13px;font-size:15px;outline:none}.input:focus{border-color:#0071e3;box-shadow:0 0 0 3px rgba(0,113,227,.22);background:rgba(255,255,255,.11)}.input::placeholder{color:#77777d}select.input option{color:#000}textarea.input{resize:vertical;min-height:82px}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.toast{position:fixed;left:50%;bottom:92px;z-index:90;transform:translateX(-50%) translateY(16px);background:rgba(255,255,255,.94);color:#111116;padding:12px 15px;border-radius:999px;font-size:13px;font-weight:900;opacity:0;pointer-events:none;transition:.18s ease;max-width:calc(100vw - 28px);text-align:center}.toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}
         @media(min-width:720px){.modal-bg{align-items:center}.screen{padding-top:24px}.camera-card{max-height:calc(100dvh - 170px)}}
         @media(max-width:560px){.hero h1{font-size:32px}.scan-cta{min-height:170px}.scan-cta h2{font-size:26px}.stats{grid-template-columns:1fr 1fr 1fr}.stat{padding:12px}.home-actions{grid-template-columns:1fr 1fr}.action-card{min-height:98px}.report-actions{grid-template-columns:1fr 1fr}.modal-actions{grid-template-columns:1fr}.detected div{flex-direction:column;gap:2px}.detected strong{text-align:left}}
         @media(max-height:720px){.hero h1{font-size:29px}.scan-cta{min-height:150px;padding:17px}.scan-cta p{display:none}.action-card{min-height:88px}.scanner-screen{gap:9px}.last-scan{display:none}}
+    
+        /* Ajustes UX: modal compacto, sin scroll raro */
+        .modal-bg{align-items:center!important;padding:10px!important}
+        .modal{max-height:calc(100dvh - 20px)!important;overflow:hidden!important;border-radius:28px!important;padding:14px!important;display:flex;flex-direction:column}
+        .modal h3{font-size:20px!important;line-height:1.05!important;margin-bottom:4px!important}
+        .modal p{font-size:12px!important;margin:0 0 8px!important;line-height:1.25!important}
+        .detected{border-radius:18px!important;padding:10px!important;gap:4px!important;margin-bottom:10px!important}
+        .detected div{display:grid!important;grid-template-columns:86px 1fr!important;align-items:center!important;gap:8px!important;font-size:12px!important}
+        .detected strong{text-align:left!important;word-break:break-word!important}
+        .warning{font-size:12px!important;padding:9px!important;border-radius:14px!important;margin-bottom:8px!important}
+        .field{margin-bottom:7px!important}
+        .field label{font-size:11px!important;margin-bottom:4px!important}
+        .input{border-radius:14px!important;padding:10px 11px!important;font-size:14px!important}
+        textarea.input{min-height:48px!important;max-height:58px!important}
+        .modal-actions{grid-template-columns:1fr 1fr!important;gap:8px!important;margin-top:8px!important}
+        .modal-actions .btn{min-height:44px!important;border-radius:16px!important;padding:10px!important;font-size:13px!important}
+        @media(max-height:720px){
+            .modal p{display:none!important}
+            .detected{grid-template-columns:1fr 1fr!important;display:grid!important}
+            .detected div{grid-template-columns:1fr!important;gap:1px!important}
+            .detected span{font-size:10px!important}
+            .detected strong{font-size:12px!important}
+            textarea.input{min-height:42px!important;max-height:46px!important}
+        }
+        @media(max-width:560px){
+            .modal-actions{grid-template-columns:1fr 1fr!important}
+            .detected div{flex-direction:initial!important}
+        }
+
     </style>
 </head>
 <body>
@@ -95,11 +124,10 @@
             <div class="stat"><span>Cambios</span><strong id="repCambios">0</strong></div>
         </div>
 
-        <div class="report-actions">
-            <button class="btn btn-green" onclick="compartirCSV()">Compartir</button>
-            <button class="btn btn-yellow" onclick="prepararCorreo()">Correo</button>
-            <button class="btn btn-ghost" onclick="descargarCSV()">CSV</button>
-            <button class="btn btn-red" onclick="limpiarDia()">Limpiar</button>
+        <div class="report-actions report-actions-3">
+            <button class="btn btn-green report-main" onclick="compartirCSV()">Compartir reporte</button>
+            <button class="btn btn-ghost" onclick="descargarCSV()">Descargar CSV</button>
+            <button class="btn btn-red" onclick="limpiarDia()">Limpiar día</button>
         </div>
 
         <div class="records-card glass">
@@ -119,7 +147,7 @@
         <h3 id="modalTitle">QR detectado</h3>
         <p id="modalDesc">Confirma el escaneo o actualiza datos antes de guardar.</p>
 
-        <div class="warning" id="duplicateWarning">Este registro ya fue escaneado hoy. Puedes cancelar o guardarlo otra vez.</div>
+        <div class="warning" id="duplicateWarning">Este registro ya existe hoy. Al guardar se actualizará el escaneo anterior.</div>
 
         <div class="detected" id="detectedBox"></div>
 
@@ -164,7 +192,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const REPORT_EMAIL = "cdmsoporte@calmil.com";
 const STORAGE_KEY = "inventario_ti_qr_pc_monitor_v3";
 let scanner = null;
 let scannerActivo = false;
@@ -196,33 +223,100 @@ function showView(v){
 }
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 
+function normalizarClaveQR(clave){
+    return (clave||"").toString().trim().toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+        .replace(/[\s_]+/g," ");
+}
+function limpiarSerie(valor){
+    const v=limpiarTexto(valor);
+    if(!v || v==="-" || v==="—" || v.toLowerCase()==="sin serie") return "";
+    return v;
+}
+function aplicarMarcaModeloMonitor(valor,data){
+    let raw=limpiarTexto(valor).replace(/\s+/g," ");
+    if(!raw || raw==="-" || raw==="—") return;
+
+    // Algunos monitores llegan como: "AUO Serial:0" o "Dell P2422H Serial:ABC123".
+    // Eso NO es el nombre completo: separamos el Serial para que no se vea feo en el título.
+    const serialMatch=raw.match(/\bserial\s*:\s*([^\s;|]+)/i);
+    if(serialMatch && !data.monitor_serie){
+        data.monitor_serie=limpiarSerie(serialMatch[1]);
+        data.serie=data.monitor_serie;
+    }
+    raw=raw.replace(/\bserial\s*:\s*[^\s;|]+/ig,"").trim();
+
+    if(!raw){
+        if(!data.monitor_marca) data.monitor_marca="Monitor";
+        return;
+    }
+
+    const partes=raw.split(" ").filter(Boolean);
+    if(!data.monitor_marca) data.monitor_marca=partes.shift()||"Monitor";
+    const modelo=partes.join(" ").trim();
+    if(modelo && !data.monitor_modelo) data.monitor_modelo=modelo;
+}
+function tituloMonitor(r){
+    const marca=limpiarTexto(r.monitor_marca);
+    const modelo=limpiarTexto(r.monitor_modelo);
+    const base=[marca,modelo].filter(Boolean).join(" ").trim();
+    if(base && !/^serial\s*:/i.test(base)) return base;
+    if(r.monitor_serie || r.serie) return `Monitor ${r.monitor_serie || r.serie}`;
+    return r.nombre_equipo || "Monitor";
+}
 function parsearQR(texto){
     const original=limpiarTexto(texto);
     const data={raw:original,tipo_registro:"PC",nombre_equipo:"",ip:"",usuario:"",serie:"",monitor_marca:"",monitor_modelo:"",monitor_tamano:"",monitor_serie:"",equipo_asignado:""};
     if(!original)return data;
+
     const lineas=original.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+
     for(const linea of lineas){
-        const partes=linea.split(":"); if(partes.length<2)continue;
-        const clave=partes.shift().trim().toLowerCase(); const valor=partes.join(":").trim();
-        if(["tipo","tipo_registro","registro"].includes(clave)){ if(valor.toLowerCase().includes("monitor"))data.tipo_registro="Monitor"; if(valor.toLowerCase().includes("pc")||valor.toLowerCase().includes("equipo"))data.tipo_registro="PC"; }
-        else if(["equipo","nombre","pc","nombre_equipo"].includes(clave)){ data.nombre_equipo=valor; }
-        else if(clave==="ip"){ data.ip=valor; }
-        else if(["usuario","user"].includes(clave)){ data.usuario=valor; }
-        else if(["serie","serial"].includes(clave)){ data.serie=valor; data.monitor_serie=valor; }
-        else if(["marca","monitor_marca"].includes(clave)){ data.monitor_marca=valor; }
-        else if(["modelo","monitor_modelo"].includes(clave)){ data.monitor_modelo=valor; }
-        else if(["marca/modelo","marca modelo"].includes(clave)){ const p=valor.split(/\s+/); data.monitor_marca=p.shift()||""; data.monitor_modelo=p.join(" ")||valor; }
-        else if(["tamaño","tamano","tamano_pulgadas","tamaño_pulgadas"].includes(clave)){ data.monitor_tamano=valor.replace('"',''); }
-        else if(["equipo asignado","asignado a","equipo_asignado"].includes(clave)){ data.equipo_asignado=valor; }
+        const partes=linea.split(":");
+        if(partes.length<2)continue;
+
+        const claveOriginal=partes.shift().trim();
+        const clave=normalizarClaveQR(claveOriginal);
+        const valor=partes.join(":").trim();
+        const valorLower=valor.toLowerCase();
+
+        if(["tipo","tipo registro","registro"].includes(clave)){
+            if(valorLower.includes("monitor")) data.tipo_registro="Monitor";
+            if(valorLower.includes("pc")||valorLower.includes("equipo")) data.tipo_registro="PC";
+        }
+        else if(["equipo","nombre","pc","nombre equipo"].includes(clave)){
+            // En QR de monitor, "Equipo" significa equipo asignado, no nombre del monitor.
+            if(data.tipo_registro==="Monitor" || original.toLowerCase().includes("tipo: monitor")) data.equipo_asignado=valor;
+            else data.nombre_equipo=valor;
+        }
+        else if(clave==="ip") data.ip=valor;
+        else if(["usuario","user"].includes(clave)) data.usuario=valor;
+        else if(["serie","serial","numero serie","numero de serie"].includes(clave)){
+            const serie=limpiarSerie(valor);
+            data.serie=serie;
+            data.monitor_serie=serie;
+        }
+        else if(["marca","monitor marca"].includes(clave)) data.monitor_marca=valor;
+        else if(["modelo","monitor modelo"].includes(clave)) data.monitor_modelo=valor;
+        else if(["marca/modelo","marca modelo","marca / modelo"].includes(clave)) aplicarMarcaModeloMonitor(valor,data);
+        else if(["tamano","tamaño","tamano pulgadas","tamaño pulgadas"].includes(clave)) data.monitor_tamano=valor.replace('"',"");
+        else if(["equipo asignado","asignado a","equipo_asignado"].includes(clave)) data.equipo_asignado=valor;
     }
+
     const lower=original.toLowerCase();
-    if(lower.includes("tipo: monitor")||lower.includes("monitor")) data.tipo_registro="Monitor";
+    if(lower.includes("tipo: monitor") || lower.includes("tipo:monitor")) data.tipo_registro="Monitor";
+
     if(data.tipo_registro==="Monitor"){
-        if(!data.monitor_modelo && data.nombre_equipo && data.nombre_equipo.toLowerCase().includes("monitor")) data.monitor_modelo=data.nombre_equipo;
-        if(!data.nombre_equipo) data.nombre_equipo = [data.monitor_marca,data.monitor_modelo,data.monitor_tamano?data.monitor_tamano+'\"':'' ].filter(Boolean).join(" ") || data.monitor_serie || "Monitor";
+        // Si el modelo trae Serial: algo, lo limpiamos también aunque haya venido en campo Modelo.
+        if(/serial\s*:/i.test(data.monitor_modelo||"")) aplicarMarcaModeloMonitor(`${data.monitor_marca} ${data.monitor_modelo}`,data);
         if(!data.monitor_serie) data.monitor_serie=data.serie;
+        if(!data.serie) data.serie=data.monitor_serie;
+        data.nombre_equipo=tituloMonitor(data);
     } else {
-        if(!data.nombre_equipo){const posible=lineas.find(l=>!l.toLowerCase().includes("inventario")&&!l.includes(":"));data.nombre_equipo=posible||original;}
+        if(!data.nombre_equipo){
+            const posible=lineas.find(l=>!l.toLowerCase().includes("inventario")&&!l.includes(":"));
+            data.nombre_equipo=posible||original;
+        }
     }
     return data;
 }
@@ -269,7 +363,7 @@ function abrirModal(data, existente=null){
     document.getElementById("scanModal").classList.add("visible");
 }
 function pcDetectedHTML(r){return `<div><span>Equipo</span><strong>${escapeHTML(r.nombre_equipo||"—")}</strong></div><div><span>IP</span><strong>${escapeHTML(r.ip||"—")}</strong></div><div><span>Usuario</span><strong>${escapeHTML(r.usuario||"—")}</strong></div><div><span>Serie</span><strong>${escapeHTML(r.serie||"—")}</strong></div>`}
-function monitorDetectedHTML(r){return `<div><span>Monitor</span><strong>${escapeHTML([r.monitor_marca,r.monitor_modelo].filter(Boolean).join(" ")||r.nombre_equipo||"—")}</strong></div><div><span>Tamaño</span><strong>${escapeHTML(r.monitor_tamano? r.monitor_tamano+'\"':'—')}</strong></div><div><span>Serie</span><strong>${escapeHTML(r.monitor_serie||r.serie||"—")}</strong></div><div><span>Asignado a</span><strong>${escapeHTML(r.equipo_asignado||"—")}</strong></div>`}
+function monitorDetectedHTML(r){return `<div><span>Monitor</span><strong>${escapeHTML(tituloMonitor(r)||"—")}</strong></div><div><span>Tamaño</span><strong>${escapeHTML(r.monitor_tamano? r.monitor_tamano+'\"':'—')}</strong></div><div><span>Serie</span><strong>${escapeHTML(r.monitor_serie||r.serie||"—")}</strong></div><div><span>Asignado a</span><strong>${escapeHTML(r.equipo_asignado||"—")}</strong></div>`}
 function cerrarModal(reabrir=false){document.getElementById("scanModal").classList.remove("visible");registroActual=null;if(reabrir&&vistaActual==="scan")setTimeout(()=>iniciarScanner(),250)}
 function guardarEscaneo(){
     if(!registroActual)return;
@@ -279,9 +373,31 @@ function guardarEscaneo(){
     registroActual.equipo_asignado_nuevo=limpiarTexto(document.getElementById("equipoAsignadoNuevo").value);
     registroActual.nota=limpiarTexto(document.getElementById("nota").value);
     registroActual.accion=(registroActual.estado_nuevo||registroActual.usuario_nuevo||registroActual.ubicacion_nueva||registroActual.equipo_asignado_nuevo||registroActual.nota)?"actualizar":"confirmar";
-    const regs=cargarRegistros();const idx=regs.findIndex(r=>r.id===registroActual.id); if(idx>=0)regs[idx]=registroActual;else regs.push(registroActual);guardarRegistros(regs);
-    document.getElementById("lastTitle").textContent=(registroActual.tipo_registro==="Monitor"?"Monitor":"PC")+" guardado";document.getElementById("lastSubtitle").textContent=registroActual.nombre_equipo||registroActual.monitor_modelo||"Registro guardado";
-    cerrarModal(false);renderAll();mostrarToast("Escaneo guardado"); if(vistaActual==="scan")setTimeout(()=>iniciarScanner(),280);
+
+    const regs=cargarRegistros();
+    const clave=keyRegistro(registroActual);
+    const hoy=hoyISO();
+
+    let idx=regs.findIndex(r=>r.id===registroActual.id);
+
+    if(idx<0){
+        idx=regs.findIndex(r=>(r.fecha_escaneo||"").startsWith(hoy) && keyRegistro(r)===clave);
+    }
+
+    if(idx>=0){
+        registroActual.id=regs[idx].id;
+        regs[idx]=registroActual;
+    }else{
+        regs.push(registroActual);
+    }
+
+    guardarRegistros(regs);
+    document.getElementById("lastTitle").textContent=(registroActual.tipo_registro==="Monitor"?"Monitor":"PC")+" guardado";
+    document.getElementById("lastSubtitle").textContent=registroActual.nombre_equipo||registroActual.monitor_modelo||"Registro guardado";
+    cerrarModal(false);
+    renderAll();
+    mostrarToast(idx>=0?"Escaneo actualizado":"Escaneo guardado");
+    if(vistaActual==="scan")setTimeout(()=>iniciarScanner(),280);
 }
 function editarRegistro(id){const r=cargarRegistros().find(x=>x.id===id);if(!r)return mostrarToast("No se encontró");abrirModal(r,r)}
 function eliminarRegistro(id){if(!confirm("¿Eliminar este registro?"))return;guardarRegistros(cargarRegistros().filter(r=>r.id!==id));renderAll();mostrarToast("Registro eliminado")}
@@ -307,7 +423,7 @@ function renderRegistros(){
     list.innerHTML=regs.map(r=>{
         const mon=r.tipo_registro==="Monitor"; const changes=[];
         if(r.estado_nuevo)changes.push(`<div><span>Estado:</span> ${escapeHTML(r.estado_nuevo)}</div>`); if(r.usuario_nuevo)changes.push(`<div><span>Usuario nuevo:</span> ${escapeHTML(r.usuario_nuevo)}</div>`); if(r.equipo_asignado_nuevo)changes.push(`<div><span>Asignado nuevo:</span> ${escapeHTML(r.equipo_asignado_nuevo)}</div>`); if(r.ubicacion_nueva)changes.push(`<div><span>Ubicación:</span> ${escapeHTML(r.ubicacion_nueva)}</div>`);
-        const title=mon?([r.monitor_marca,r.monitor_modelo].filter(Boolean).join(" ")||r.nombre_equipo||"Monitor"):(r.nombre_equipo||"SIN NOMBRE");
+        const title=mon?tituloMonitor(r):(r.nombre_equipo||"SIN NOMBRE");
         const meta=mon?`<div><span>Serie:</span> ${escapeHTML(r.monitor_serie||r.serie||"-")}</div><div><span>Tamaño:</span> ${escapeHTML(r.monitor_tamano? r.monitor_tamano+'\"':'-')}</div><div><span>Asignado a:</span> ${escapeHTML(r.equipo_asignado||"-")}</div>`:`<div><span>IP:</span> ${escapeHTML(r.ip||"-")}</div><div><span>Usuario:</span> ${escapeHTML(r.usuario||"-")}</div><div><span>Serie:</span> ${escapeHTML(r.serie||"-")}</div>`;
         return `<div class="record"><div class="record-top"><div class="record-name">${escapeHTML(title)}</div><div class="badge ${mon?'monitor':''}">${mon?'Monitor':'PC'} · ${escapeHTML(horaCorta(r.fecha_escaneo))}</div></div><div class="record-meta">${meta}${changes.join("")}</div>${r.nota?`<div class="record-note">${escapeHTML(r.nota)}</div>`:""}<div class="record-actions"><button class="mini-btn" onclick="editarRegistro('${r.id}')">Editar</button><button class="mini-btn" onclick="eliminarRegistro('${r.id}')">Eliminar</button></div></div>`
     }).join("")
@@ -318,7 +434,6 @@ function csvValue(v){const t=(v||"").toString();return `"${t.replaceAll('"','""'
 function nombreArchivoCSV(){return`escaneos_qr_${hoyISO()}.csv`}
 function descargarCSV(){const csv=obtenerCSV();if(!csv)return mostrarToast("No hay registros");const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=nombreArchivoCSV();document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);mostrarToast("CSV descargado")}
 async function compartirCSV(){const csv=obtenerCSV();if(!csv)return mostrarToast("No hay registros para compartir");const archivo=new File([csv],nombreArchivoCSV(),{type:"text/csv"});if(navigator.canShare&&navigator.canShare({files:[archivo]})){try{await navigator.share({title:`Reporte QR ${hoyISO()}`,text:generarTextoReporte(),files:[archivo]});mostrarToast("Reporte compartido");return}catch(e){if(e.name!=="AbortError")console.warn(e)}}descargarCSV();mostrarToast("Se descargó el CSV")}
-function prepararCorreo(){if(!registrosHoy().length)return mostrarToast("No hay registros");const subject=`Reporte de escaneos QR - ${hoyISO()}`;const body=generarTextoReporte()+"\n\nNota: adjunto/comparto el CSV generado desde la app móvil.";window.location.href=`mailto:${encodeURIComponent(REPORT_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
 function generarTextoReporte(){const s=stats();return`Hola,\n\nAquí está el reporte de escaneos QR del día ${hoyISO()}.\n\nResumen:\n- PCs escaneadas: ${s.pcs}\n- Monitores escaneados: ${s.monitores}\n- Registros con cambios o notas: ${s.cambios}\n\nEl archivo CSV contiene el detalle para importarlo al sistema de inventario.\n\nSaludos.`}
 
 document.addEventListener("DOMContentLoaded",()=>{renderAll()});
